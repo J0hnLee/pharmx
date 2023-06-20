@@ -5,8 +5,9 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-
+import { Breadcrumb, Button, Layout, Menu, theme } from "antd";
+import { ProForm, ProFormText } from '@ant-design/pro-components';
+import { UserTable } from "~/componments/tables";
 const { Header, Content, Footer, Sider } = Layout;
 
 const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
@@ -70,6 +71,8 @@ const AppLayout: React.FC = ({ children }) => {
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             {children}
+            <UserTable/>
+            
           </Content>
         </Layout>
       </Content>
