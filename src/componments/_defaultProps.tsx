@@ -4,20 +4,20 @@ import {
     SmileFilled,
     TabletFilled,
   } from '@ant-design/icons';
-  
+  import Link from 'next/link';
   export default {
     route: {
       path: '/',
       routes: [
         {
-          path: '/welcome',
+          path: '/',
           name: '歡迎',
           icon: <SmileFilled />,
-          component: './Welcome',
+          component: './tables.tsx',
         },
         {
           path: '/admin',
-          name: '管理页',
+          name: '管理頁',
           icon: <CrownFilled />,
           access: 'canAdmin',
           component: './Admin',

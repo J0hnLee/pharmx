@@ -267,7 +267,7 @@ const SearchInput = () => {
   );
 };
 
-const testlayout = () => {
+const testlayout = (props) => {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
     fixSiderbar: true,
     layout: 'mix',
@@ -390,7 +390,7 @@ const testlayout = () => {
                     paddingBlockStart: 12,
                   }}
                 >
-                  <div>© 2021 Made with love</div>
+                  <div>© 2023 Made with love</div>
                   <div>by Ant Design</div>
                 </div>
               );

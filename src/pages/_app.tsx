@@ -4,14 +4,23 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 
+import dynamic from "next/dynamic";
+import MainLayout from "~/componments/mainLayout";
+const ProLayout = dynamic(() => import("@ant-design/pro-layout"), {
+  ssr: false,
+});
+
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
     <SessionProvider session={session}>
-   <Component {...pageProps} />
-      
+      <MainLayout>
+      <div suppressHydrationWarning>  
+      {typeof window === 'undefined' ? null : <Component {...pageProps} />}
+      </div>
+      </MainLayout>
     </SessionProvider>
   );
 };
