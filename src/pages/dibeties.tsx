@@ -9,7 +9,7 @@ import { Breadcrumb, Button, Layout, Menu, theme } from "antd";
 import { ProForm, ProFormText } from '@ant-design/pro-components';
 import { UserTable } from "~/componments/tables";
 const { Header, Content, Footer, Sider } = Layout;
-
+import Link from "next/link";
 const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
   key,
   label: `nav ${key}`,
@@ -46,12 +46,13 @@ const AppLayout: React.FC = ({ children }) => {
     <Layout style={{ height:"100vh" }}>
       <Header style={{ display: "flex", alignItems: "center" }}>
         <div className="demo-logo" />
-        <Menu
+        
+        {/* <Menu
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={["2"]}
           items={items1}
-        />
+        /> */}
       </Header>
       <Content style={{ padding: "0 50px" }}>
         <Breadcrumb style={{ margin: "16px 0" }}>
@@ -61,13 +62,24 @@ const AppLayout: React.FC = ({ children }) => {
         </Breadcrumb>
         <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
           <Sider style={{ background: colorBgContainer }} width={200}>
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%" }}
-              items={items2}
-            />
+          <Menu>
+            <Link href="/dibeties">
+            <Menu.Item>
+                <span className="nav-text">
+                    糖尿病
+                </span>
+            </Menu.Item>
+              </Link>
+            <Link href="/testLayout">
+        
+            <Menu.Item>
+                <span className="nav-text">
+                    新的layout
+                </span>
+            </Menu.Item>
+        
+    </Link>
+</Menu>
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             {children}

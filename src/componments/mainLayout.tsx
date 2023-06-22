@@ -1,31 +1,66 @@
+'use client'
+import React from "react"
 import dynamic from "next/dynamic";
-import defaultProps from './_defaultProps';
 import Link from "next/link";
-import Menu from "antd";
-import {SmileFilled,TabletFilled} from '@ant-design/icons';
-const ProLayout = dynamic(() => import("@ant-design/pro-layout"), {
-  ssr: false,
-});
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-const MainLayout =({children})=>{
-    return (
-        //TODO:logo太小 改大一點
-        <ProLayout title='理維' logo="https://leadway-web.vercel.app/img/android-chrome-512x512.png" 
-        menu={{
-            //collapsedShowGroupTitle: true,
-            
-          }}
-        {...defaultProps}
+import {Menu,Breadcrumb,theme,Layout} from "antd";
+
+// const Layout = dynamic(() => import('antd/lib/layout'), {
+//   ssr: false,
+// });
+
+const { Header, Content, Footer, Sider } = Layout;
+
+// const ProLayout = dynamic(() => import("@ant-design/pro-layout"), {
+//   ssr: false,
+// });
+
+
+const MainLayout:React.FC  =({children})=>{  
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+  
+  return (
+     <Layout style={{ height:"100vh" }}>
+       <Header style={{ display: "flex", alignItems: "center" }}>
+        <div className="demo-logo" />
         
-      >
-            <>
+        
+      </Header> 
+       <Content style={{ padding: "0 50px" }}>
+        
+        <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
+          <Sider style={{ background: colorBgContainer }} width={200}>
+          <Menu>
+            <Link href="/dibeties">
+            <Menu.Item>
+                <span className="nav-text">
+                    糖尿病
+                </span>
+            </Menu.Item>
+              </Link>
+            <Link href="/testLayout">
+        
+            <Menu.Item>
+                <span className="nav-text">
+                    新的layout
+                </span>
+            </Menu.Item>
+        
+    </Link>
+</Menu>
+          </Sider>
+          <Content style={{ padding: "0 24px", minHeight: 480 }}>
+           {children}
+           
             
-            <Link href='Welcome'>We</Link>
-            {children}
-            </>
-            </ProLayout>
-            
-    )
-}
+          </Content>
+        </Layout>
+      </Content>
+      
+    </Layout>
+  );
+};
+  
 
 export default MainLayout;

@@ -5,10 +5,8 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 
 import dynamic from "next/dynamic";
-import MainLayout from "~/componments/mainLayout";
-const ProLayout = dynamic(() => import("@ant-design/pro-layout"), {
-  ssr: false,
-});
+import MainLayout from "~/componments/MainLayout";
+
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
