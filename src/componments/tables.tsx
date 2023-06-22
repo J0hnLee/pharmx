@@ -44,6 +44,17 @@ const defaultData: DataSourceType[] = [
     state: 'closed',
     created_at: '1590481162000',
     update_at: '1590481162000',
+
+  },
+  {
+    id: 624691229,
+    title: '活动名称二',
+    readonly: '活动名称二',
+    decs: '这个活动真好玩',
+    state: 'closed',
+    created_at: '1590481162000',
+    update_at: '1590481162000',
+    
   },
 ];
 
@@ -56,30 +67,30 @@ export  const UserTable = () => {
 
   const columns: ProColumns<DataSourceType>[] = [
     {
-      title: '活动名称',
+      title: '姓名',
       dataIndex: 'title',
-      tooltip: '只读，使用form.getFieldValue获取不到值',
+      tooltip: '只讀，使用form.getFieldValue獲取不到值',
       formItemProps: (form, { rowIndex }) => {
         return {
           rules:
-            rowIndex > 1 ? [{ required: true, message: '此项为必填项' }] : [],
+            rowIndex > 1 ? [{ required: true, message: '此項為必填項' }] : [],
         };
       },
       // 第一行不允许编辑
       editable: (text, record, index) => {
         return index !== 0;
       },
-      width: '15%',
+      width: '10%',
     },
     {
-      title: '活动名称二',
+      title: '電話',
       dataIndex: 'readonly',
       tooltip: '只读，使用form.getFieldValue可以获取到值',
       readonly: true,
-      width: '15%',
+      width: '10%',
     },
     {
-      title: '状态',
+      title: '生日',
       key: 'state',
       dataIndex: 'state',
       valueType: 'select',
@@ -146,7 +157,7 @@ export  const UserTable = () => {
     <>
       <EditableProTable<DataSourceType>
         rowKey="id"
-        headerTitle="可编辑表格"
+        headerTitle="使用者資料"
         maxLength={5}
         scroll={{
           x: 960,
@@ -169,7 +180,7 @@ export  const UserTable = () => {
             }}
             options={[
               {
-                label: '添加到顶部',
+                label: '添加到頂部',
                 value: 'top',
               },
               {
@@ -177,7 +188,7 @@ export  const UserTable = () => {
                 value: 'bottom',
               },
               {
-                label: '隐藏',
+                label: '隱藏',
                 value: 'hidden',
               },
             ]}

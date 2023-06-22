@@ -28,7 +28,7 @@ import {
   theme,
 } from 'antd';
 import React, { useState } from 'react';
-import defaultProps from './src/pages/_defaultProps';
+import defaultProps from '../pages/_defaultProps';
 import dynamic from "next/dynamic";
 //import ProLayout from '@ant-design/pro-layout'
 

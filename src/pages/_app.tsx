@@ -4,7 +4,6 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 
-import dynamic from "next/dynamic";
 import MainLayout from "~/componments/MainLayout";
 
 
@@ -14,11 +13,13 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <MainLayout>
-      <div suppressHydrationWarning>  
-      {typeof window === 'undefined' ? null : <Component {...pageProps} />}
+      <MainLayout > 
+      <div >  
+      {/* {typeof window === 'undefined' ? null : <Component {...pageProps} />} */}
+      <Component {...pageProps} />
+
       </div>
-      </MainLayout>
+    </MainLayout> 
     </SessionProvider>
   );
 };
