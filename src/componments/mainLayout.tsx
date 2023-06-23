@@ -5,10 +5,14 @@ import Link from "next/link";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  PieChartOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  DesktopOutlined,
+  ContainerOutlined
 } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
 import {Menu,Breadcrumb,theme,Layout,Button} from "antd";
 import { useState } from "react";
 // const Layout = dynamic(() => import('antd/lib/layout'), {
@@ -20,6 +24,23 @@ const { Header, Content, Footer, Sider } = Layout;
 // const ProLayout = dynamic(() => import("@ant-design/pro-layout"), {
 //   ssr: false,
 // });
+type MenuItem = Required<MenuProps>['items'][number];
+
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  type?: 'group',
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  } as MenuItem;
+}
 
 
 const MainLayout:React.FC  =({children})=>{  
@@ -27,6 +48,23 @@ const MainLayout:React.FC  =({children})=>{
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const UrlLink=()=>{
+    return(
+        <div>
+      <Link href="/dibeties">        
+                <span className="text-1">
+                    糖尿病 gg
+                </span>
+                {/* <DesktopOutlined/> */}
+        </Link>
+     </div>
+    )
+}
+
+  const items: MenuItem[] = [
+    getItem('Option 1', '1', <UrlLink />),
+    getItem('Option 2', '2', <DesktopOutlined />),
+    getItem('Option 3', '3', <ContainerOutlined />),]
   
   return (
      <Layout style={{ height:"100vh" }}>
@@ -35,22 +73,21 @@ const MainLayout:React.FC  =({children})=>{
       </Header> 
         <Layout style={{ padding: "0px 0", background: colorBgContainer }}>
           <Sider trigger={null} collapsible collapsed={collapsed}>
-          <Menu theme="dark" mode="inline"  defaultSelectedKeys={['1']}>
-            <Link href="/dibeties">
-            <Menu.Item >
-                <span className="text-1">
-                    糖尿病
-                </span>
-            </Menu.Item>
-              </Link>
-            <Link href="/Welcome">
-            <Menu.Item>
-                <span className="nav-text">
-                    新的layout
-                </span>
-            </Menu.Item>
-            </Link>
-          </Menu>
+          <Menu
+        defaultSelectedKeys={['1']}
+        defaultOpenKeys={['sub1']}
+        mode="inline"
+        theme="dark"
+        //TODO: 改乘用列表形式
+        items={[
+            {label:(< Link href="/Welcome">歡迎</Link>),key:'welcome',icon:<DesktopOutlined />},
+            {label:(<Link href="/dibeties">        
+                糖尿病</Link>),key:'dibeties',danger:true, icon:<ContainerOutlined />},
+           
+
+        ]}
+      />
+        
           </Sider>
           <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
